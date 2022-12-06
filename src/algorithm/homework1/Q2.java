@@ -1,12 +1,8 @@
 package algorithm.homework1;
 
-
-//https://www.youtube.com/watch?v=ywWBy6J5gz8
-
 import java.util.Random;
 
-public class Question2 {
-
+public class Q2 {
     public static void main(String[] args) {
 
         int arr1[] = {10, 80, 30, 90, 40, 50, 70, 9, 6, 8, 5, 1, 2, 95};
@@ -72,34 +68,27 @@ public class Question2 {
         int i = lowIndex;
 
 
-        while (i < j) {
+        while (i <= j) {
 
-            while (arr[i]<arr[j]) {//arr[i]<arr[j]
+            while (pivot < arr[j]) {
 
-                if (pivot <= arr[j]) {
-                    j--;
-                }
-                else {
-                    swap(arr,i,j);
 
-                }
+                j--;
 
             }
-            while(i>j)
-
-            if (arr[j] < pivot) {
+            if (arr[j] <= pivot) {
                 swap(arr, i, j);
             }
 
 
             while (pivot > arr[i]) {
-                if (pivot != arr[i]) {
-                    i++;
-                }
+
+                i++;
 
             }
-            if (arr[i] > pivot) {
+            if (arr[i] >= pivot) {
                 swap(arr, i, j);
+
             }
 
 
@@ -143,7 +132,7 @@ public class Question2 {
                 swap(arr, i, j);
             }
 
-            //***********
+            //*****
             if (lowIndex > j) {
 
             }
