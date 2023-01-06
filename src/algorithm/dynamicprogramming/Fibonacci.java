@@ -4,7 +4,7 @@ public class Fibonacci {
 
     public static void main(String[] args) {
 
-        System.out.println(recursiveFibonacci(0));
+        System.out.println(iterativeFibonacci(5));
 
     }
 
@@ -43,26 +43,48 @@ public class Fibonacci {
 
 
     //Table - Tabulation
-    //Bottom-up Approach
-    //Bottom-Up(Dynamic Programming)
+    //Bottom-UP Approach
+    //Bottom-UP(Dynamic Programming)
     public static int iterativeFibonacci(int n) {
-        int[] arr = new int[n];
+        int[] fib = new int[n+2];
         if (n <= 1) {
             return n;
         }
-        arr[0] = 0;
-        arr[1] = 1;
+        fib[0] = 0;
+        fib[1] = 1;
 
         for (int i = 2; i <= n; i++) {
-            arr[i] = arr[i - 1] + arr[i - 2];
+            fib[i] = fib[i - 1] + fib[i - 2];
         }
-        return arr[n];
+        return fib[n];
     }
 
 
 
+
     //Top-Down(Memoization)
-    public static void dynamicSolutionFib(int n) {
+    //Top down approach
+    public static int dynamicSolutionFib(int n) {
+        int[] arr = new int[10];
+        if (n <= 1)
+            return n;
+
+        // Temporary variables to store
+        // values of fib(n-1) & fib(n-2)
+        int first, second;
+
+        if (arr[n - 1] != -1)
+            first = arr[n - 1];
+        else
+            first = dynamicSolutionFib(n - 1);
+
+        if (arr[n - 2] != -1)
+            second = arr[n - 2];
+        else
+            second = dynamicSolutionFib(n - 2);
+
+        // Memoization
+        return arr[n] = first + second;
 
 
 
