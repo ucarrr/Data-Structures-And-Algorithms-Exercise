@@ -2,10 +2,9 @@ package algorithm.dynamicprogramming;
 
 import java.util.Arrays;
 
+
 public class Knapsack {
 
-    //Fractional Knapsack Problem using Greedy algorithm
-    //we can break items for maximizing the total value of the knapsack
 
     public static void main(String[] args) {
 
@@ -13,21 +12,63 @@ public class Knapsack {
         int[] profits = {10, 5, 15, 7, 6, 18, 3};
         int capacity = 15;
 
+        int[] weights2 = {0, 1, 2, 5, 6};
+        int[] profits2 = {0, 2, 3, 4, 5};
+        int capacity2 = 8;
 
-        double maxValue = getMaxProfit(weights, profits, capacity);
+        zeroOne(weights2, profits2, capacity2, 4);
+
+      /*  double maxValue = getMaxProfit(weights, profits, capacity);
         System.out.println("Maximum value we can obtain = " + maxValue);
 
 
-        System.out.println(maxValue);
+        System.out.println(maxValue);*/
     }
 
-    private record KnapsackSolution(double[] items, double maxProfit) {
-        public static void print(KnapsackSolution knapsackSolution) {
-            System.out.println("*******    Maximum profit of knapsack  =  " + knapsackSolution.maxProfit + "    *******");
-            System.out.println("*******    Items in knapsack are     *******");
-            printArray(knapsackSolution.items);
+    // 0/1 Knapsack Problem
+    // We can not break items
+    // Ex: laptop
+    // n = item Number
+    private static void zeroOne(int[] weights, int[] profits, int bagCapacity, int n) {
+
+        int[][] k = new int[n + 1][bagCapacity + 1];
+
+
+        for (int i = 0; i <= n; i++) {
+
+            for (int w = 0; w <= bagCapacity; w++) {
+
+                if (i == 0 || w == 0) {
+                    System.out.print(k[i][w] = 0);
+                    System.out.print(" ");
+                } else if (weights[i] < w) {
+                    System.out.print(k[i][w] = getMax(profits[i] + k[i - 1][w - weights[i]], k[i - 1][w]));
+                    System.out.print(" ");
+                }else{
+                    System.out.print( k[i][w]=k[i-1][w]);
+                    System.out.print(" ");
+                }
+
+            }
+            System.out.println("");
+
         }
+
+
+
     }
+
+    private static int getMax(int a, int b) {
+
+        if (a > b) return a;
+
+        return b;
+    }
+
+
+    //Fractional Knapsack Problem using Greedy algorithm
+    //We can break items for maximizing the total value of the knapsack
+    //EX: 1KG Tomato, 1/2 KG Onion
 
     private static double getMaxProfit(int[] weights, int[] profits, int capacity) {
         int maxProfit = 0;

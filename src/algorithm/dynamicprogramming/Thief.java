@@ -60,13 +60,14 @@ public class Thief {
     }
 
     private static int min(int smallNumber, int smallNumber1, int smallNumber2) {
-        if (smallNumber < smallNumber1) {
-            return smallNumber;
-        } else if (smallNumber1 < smallNumber2) {
-            return smallNumber1;
-        } else {
-            return smallNumber2;
+
+        int minValue1=Math.min(smallNumber,smallNumber1);
+        int minValue2=Math.min(minValue1,smallNumber2);
+
+        if (minValue1 < minValue2) {
+            return minValue1;
         }
+        return minValue2;
     }
 
 
